@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+<script>
+    function update_item()
+    {
+        data = {"title": $("#InputTitle").val(),"description":$("#InputDescription").val(),"catagory":$("#InputCategory").val()}
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/v1/item/update/{{ data['c']['c'].id }}",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function(data){
+                window.location = "/item/read/"+data.id
+            }
+        });
+    }
+</script>
+
+<div class="create_category">
+    <form>
+      <h3>Update Item</h3>
+      <div class="form-group">
+        <input type="text" name="Title" class="form-control" id="InputTitle" value="{{ data['c']['c'].title }}">
+      </div>
+      <div class="form-group">
+        <textarea type="text" name="Description" class="form-control" id="InputDescription">{{ data['c']['c'].description }}</textarea>
+      </div>
+      <select class="form-control" id="InputCategory">
+          {% for x in data['c']['cats'] %}
+          <option value="{{ x.id }}">{{ x.title }}</option>
+          {% endfor %}
+      </select>
+    </form>
+    <button class="btn btn-default login_button" onclick="update_item()">Submit</button>
+</div>
+{% endblock %}

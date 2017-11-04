@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script>
+    function create_category()
+    {
+        data = {"title": $("#InputTitle").val(),"description":$("#InputDescription").val(),"catagory":$("#InputCategory").val()}
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/v1/item/create",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function(data){
+                window.location = "/item/read/"+data.id
+            }
+        });
+    }
+</script>
+
+<div class="create_category">
+    <form>
+      <h3>Create Item</h3>
+      <div class="form-group">
+        <input type="text" name="Title" class="form-control" id="InputTitle" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <textarea type="text" name="Description" class="form-control" id="InputDescription" placeholder="Description"></textarea>
+      </div>
+      <select class="form-control" id="InputCategory">
+          {% for c in data['cats'] %}
+          <option value="{{ c.id }}">{{ c.title }}</option>
+          {% endfor %}
+      </select>
+    </form>
+    <button class="btn btn-default login_button" onclick="create_category()">Submit</button>
+</div>
+{% endblock %}

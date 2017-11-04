@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-7">
+                <h3>Latest Items</h3>
+                <ul>
+                    {% for c in data['items'] %}
+                    <li><a href="/item/read/{{ c.id }}">{{ c.title }}</a></li>
+                    {% endfor %}
+                </ul>
+        </div>
+        <div class="col-md-3">
+            <h3>Categories</h3>
+            <ul>
+                {% for c in data['cats'] %}
+                <li><a href="/category/read/{{ c.id }}">{{ c.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

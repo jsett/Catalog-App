@@ -1,0 +1,46 @@
+.login
+{
+text-align:center;
+    width: 50%;
+    margin-left: 30%;
+    margin-top: 8%;
+    background-color: #f6f6f6;
+    border-color: #c9e0e9;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    max-width: 350px;
+    padding-bottom: 20px;
+}
+.login_button
+{
+    width: 100%;
+}
+.login_form
+{
+    padding: 10px;
+    margin: 0 auto;
+    width: 85%;
+}
+.create_category
+{
+    width: 50%;
+    margin-left: 30%;
+    margin-top: 8%;
+    background-color: #f6f6f6;
+    border-color: #c9e0e9;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    max-width: 350px;
+    padding-bottom: 20px;
+    padding: 20px;
+}
+.login_error
+{
+    background-color: red;
+}
+.smallerText
+{
+    font-size: .5em;
+}

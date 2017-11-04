@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+<script>
+    function delete_category()
+    {
+        $.ajax({
+            type: "DELETE",
+            url: "/api/v1/category/delete/{{ data['cat'].id }}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+                window.location = "/index"
+            }
+        });
+    }
+</script>
+
+<div class="create_category">
+
+      <h3>{{ data['cat'].title }}</h3>
+      <p>{{ data['cat'].description }}</p>
+      <a href="/category/update/{{ data['cat'].id }}">Edit</a>
+      <a onclick="delete_category()">Delete</a>
+      <hr>
+      Items:<br>
+      {% for x in data['items'] %}
+      <a href="/item/read/{{ x.id }}">{{ x.title }}</a><br>
+      {% endfor %}
+</div>
+{% endblock %}
